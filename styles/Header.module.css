@@ -1,0 +1,17 @@
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    width: 100%;
+}
+
+.logo {
+    width: 40px;
+}
+
+.menu {
+    cursor: pointer;
+}

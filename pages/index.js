@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Header } from '@/components/header';
 import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import { gsap } from 'gsap';
@@ -26,6 +27,8 @@ export default function Home() {
 
         const target = document.getElementById('move');
         const about = document.getElementById('about');
+        const intro = document.getElementById('intro');
+        console.log(intro.offsetTop);
         // const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
         const pos = { x: 0, y: 0 };
         const mouse = { x: pos.x, y: pos.y };
@@ -44,14 +47,12 @@ export default function Home() {
             const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
 
             if (movementAllowed) {
-                // pos.x += (mouse.x - (target.offsetLeft + 250) - pos.x) * dt;
                 pos.x +=
                     (mouse.x -
                         (target.offsetLeft + target.offsetWidth / 2) -
                         pos.x) *
                     dt;
-                // pos.y +=
-                //     (mouse.y + scrollY - (target.offsetTop + 250) - pos.y) * dt;
+                // need to offset by the section's top coordinate as otherwise yPos breaks when isn't at the very top
                 pos.y +=
                     (mouse.y +
                         scrollY -
@@ -68,14 +69,12 @@ export default function Home() {
             }
         });
         gsap.to(target, {
-            // 150px is half of the new video width
-            // padding: '0 calc(47.5% - 150px - 175px)',
             scrollTrigger: {
                 duration: 0.1,
                 trigger: intro,
                 toggleActions: 'restart none none reverse',
-                start: 'top top',
-                // markers: true,
+                start: '30% top',
+                markers: true,
                 onEnter: () => {
                     console.log('onEnter');
                     movementAllowed = true;
@@ -122,126 +121,94 @@ export default function Home() {
                 />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
+            <Header />
             <div className='smooth-wrapper'>
                 <div className='smooth-content'>
                     <div className={styles.wrapper}>
                         <main className={styles.main}>
+                            <section className={styles.cover}>
+                                <h1>
+                                    Building standout experiences for events,
+                                    exhibitions and retail spaces.
+                                </h1>
+                            </section>
                             <section className={styles.intro} id='intro'>
-                                <h1>Smart Development_</h1>
-                                <div className={styles.move} id='move'>
-                                    {/* <div /> */}
-                                    <div id='videoContainer'>
-                                        <video
-                                            src='/2.webm'
-                                            autoPlay
-                                            loop
-                                            muted
-                                            id='moveVideo'
-                                        />
+                                <div className='tight'>
+                                    <h2>
+                                        We create 🧪
+                                        <br />
+                                        moving experiences 🕹
+                                    </h2>
+                                    <div className={styles.move} id='move'>
+                                        <div id='videoContainer'>
+                                            <video
+                                                src='/1.webm'
+                                                autoPlay
+                                                loop
+                                                muted
+                                                id='moveVideo'
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className={styles.about} id='about'>
-                                    <h2>ABOUT</h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Donec tincidunt
-                                        suscipit neque, ac pretium est. In non
-                                        elementum nisi. Proin iaculis arcu est,
-                                        sit amet fringilla sapien auctor at.
-                                        Morbi fermentum ut mauris sed porttitor.
-                                        Mauris mollis viverra risus quis
-                                        pulvinar. Aenean pretium ligula sed eros
-                                        egestas volutpat. Nunc in porta est.
-                                        Aliquam ut volutpat justo. Integer quam
-                                        tortor, lacinia eget lacus non, semper
-                                        imperdiet dolor. Sed lacinia dolor quis
-                                        sem suscipit venenatis. Proin fermentum
-                                        elit turpis, sit amet blandit diam
-                                        tincidunt sollicitudin. Praesent luctus
-                                        orci metus, sed vehicula mi maximus
-                                        finibus. Pellentesque volutpat rhoncus
-                                        tempor.
-                                    </p>
+                                    <div className='tight'>
+                                        <h3>About</h3>
+                                        <p>
+                                            Lorem ipsum dolor sit amet,
+                                            consectetur adipiscing elit. Donec
+                                            tincidunt suscipit neque, ac pretium
+                                            est. In non elementum nisi. Proin
+                                            iaculis arcu est, sit amet fringilla
+                                            sapien auctor at. Morbi fermentum ut
+                                            mauris sed porttitor. Mauris mollis
+                                            viverra risus quis pulvinar. Aenean
+                                            pretium ligula sed eros egestas
+                                            volutpat. Nunc in porta est. Aliquam
+                                            ut volutpat justo. Integer quam
+                                            tortor, lacinia eget lacus non,
+                                            semper imperdiet dolor. Sed lacinia
+                                            dolor quis sem suscipit venenatis.
+                                            Proin fermentum elit turpis, sit
+                                            amet blandit diam tincidunt
+                                            sollicitudin. Praesent luctus orci
+                                            metus, sed vehicula mi maximus
+                                            finibus. Pellentesque volutpat
+                                            rhoncus tempor.
+                                        </p>
+                                    </div>
                                 </div>
                             </section>
-                            <div className={styles.code}>
-                                <h2>CODE</h2>
+                            <section className={styles.labs}>
+                                <h5>/who-we-are</h5>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Donec tincidunt suscipit
-                                    neque, ac pretium est. In non elementum
-                                    nisi. Proin iaculis arcu est, sit amet
-                                    fringilla sapien auctor at. Morbi fermentum
-                                    ut mauris sed porttitor. Mauris mollis
-                                    viverra risus quis pulvinar. Aenean pretium
-                                    ligula sed eros egestas volutpat. Nunc in
-                                    porta est. Aliquam ut volutpat justo.
-                                    Integer quam tortor, lacinia eget lacus non,
-                                    semper imperdiet dolor. Sed lacinia dolor
-                                    quis sem suscipit venenatis. Proin fermentum
-                                    elit turpis, sit amet blandit diam tincidunt
-                                    sollicitudin. Praesent luctus orci metus,
-                                    sed vehicula mi maximus finibus.
-                                    Pellentesque volutpat rhoncus tempor.
+                                    We are <span>creative</span> and{' '}
+                                    <span>strategic</span> thinkers,
+                                </p>
+                                <p style={{ marginBottom: 20 }}>
+                                    building for the <span>metaverse.</span>
                                 </p>
                                 <p>
-                                    Praesent fringilla, neque et ornare
-                                    efficitur, sapien ex accumsan erat, eget
-                                    placerat nisi elit sit amet lacus. Aliquam
-                                    erat volutpat. Sed facilisis consectetur
-                                    egestas. Sed varius pellentesque vulputate.
-                                    Cras vitae lacinia nibh. Quisque eget semper
-                                    dui. Ut congue sem non mollis vestibulum.
-                                    Morbi vestibulum nisi orci, sit amet
-                                    tincidunt leo eleifend ut. Cras vulputate
-                                    faucibus vulputate. Donec consectetur, nulla
-                                    vitae vestibulum porta, nulla nulla dictum
-                                    odio, in aliquet lorem elit non dolor.
-                                    Curabitur tincidunt varius sollicitudin.
+                                    We help brands to explore new playgrounds,
                                 </p>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Donec tincidunt suscipit
-                                    neque, ac pretium est. In non elementum
-                                    nisi. Proin iaculis arcu est, sit amet
-                                    fringilla sapien auctor at. Morbi fermentum
-                                    ut mauris sed porttitor. Mauris mollis
-                                    viverra risus quis pulvinar. Aenean pretium
-                                    ligula sed eros egestas volutpat. Nunc in
-                                    porta est. Aliquam ut volutpat justo.
-                                    Integer quam tortor, lacinia eget lacus non,
-                                    semper imperdiet dolor. Sed lacinia dolor
-                                    quis sem suscipit venenatis. Proin fermentum
-                                    elit turpis, sit amet blandit diam tincidunt
-                                    sollicitudin. Praesent luctus orci metus,
-                                    sed vehicula mi maximus finibus.
-                                    Pellentesque volutpat rhoncus tempor.
+                                    connect with <span>communities</span> and
+                                    craft
                                 </p>
-                                <p>
-                                    Praesent fringilla, neque et ornare
-                                    efficitur, sapien ex accumsan erat, eget
-                                    placerat nisi elit sit amet lacus. Aliquam
-                                    erat volutpat. Sed facilisis consectetur
-                                    egestas. Sed varius pellentesque vulputate.
-                                    Cras vitae lacinia nibh. Quisque eget semper
-                                    dui. Ut congue sem non mollis vestibulum.
-                                    Morbi vestibulum nisi orci, sit amet
-                                    tincidunt leo eleifend ut. Cras vulputate
-                                    faucibus vulputate. Donec consectetur, nulla
-                                    vitae vestibulum porta, nulla nulla dictum
-                                    odio, in aliquet lorem elit non dolor.
-                                    Curabitur tincidunt varius sollicitudin.
+                                <p style={{ marginBottom: 40 }}>
+                                    cool <span>experiences.</span>
                                 </p>
-                            </div>
+                                <button>Contact us</button>
+                            </section>
                             {/* <section className={styles.vCenter}>
-                        <div className={styles.parallaxSlab}>
-                            <img
-                                data-speed='auto'
-                                src='https://assets.codepen.io/756881/smoothscroller-1.jpg'
-                                alt=''
-                            />
-                        </div>
-                    </section> */}
+                                <div className={styles.parallaxSlab}>
+                                    <img
+                                        data-speed='auto'
+                                        src='https://assets.codepen.io/756881/smoothscroller-1.jpg'
+                                        alt=''
+                                    />
+                                </div>
+                            </section> */}
                         </main>
                     </div>
                 </div>
