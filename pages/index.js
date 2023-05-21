@@ -68,7 +68,8 @@ export default function Home() {
             }
         });
         gsap.to(target, {
-            padding: '0 575',
+            // 150px is half of the new video width
+            // padding: '0 calc(47.5% - 150px - 175px)',
             scrollTrigger: {
                 duration: 0.1,
                 trigger: intro,
@@ -78,23 +79,27 @@ export default function Home() {
                 onEnter: () => {
                     console.log('onEnter');
                     movementAllowed = true;
+                    target.classList.add('paddingNew');
                 },
                 onEnterBack: () => {
                     console.log('onEnterBack');
                     movementAllowed = true;
+                    target.classList.add('paddingNew');
                 },
                 onLeave: () => {
                     movementAllowed = false;
+                    target.classList.remove('paddingNew');
                 },
                 onLeaveBack: () => {
                     console.log('onLeaveBack');
                     movementAllowed = false;
+                    target.classList.remove('paddingNew');
                 },
             },
         });
         const vid = document.getElementById('moveVideo');
         gsap.to(vid, {
-            scale: 0.5,
+            width: 300,
             scrollTrigger: {
                 duration: 0.1,
                 trigger: intro,
@@ -122,14 +127,10 @@ export default function Home() {
                     <div className={styles.wrapper}>
                         <main className={styles.main}>
                             <section className={styles.intro} id='intro'>
-                                <h1>
-                                    SMART
-                                    <br />
-                                    DEVELOPMENT_
-                                </h1>
+                                <h1>Smart Development_</h1>
                                 <div className={styles.move} id='move'>
                                     {/* <div /> */}
-                                    <div>
+                                    <div id='videoContainer'>
                                         <video
                                             src='/2.webm'
                                             autoPlay

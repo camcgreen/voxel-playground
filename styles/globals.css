@@ -15,6 +15,7 @@ body {
     font-size: 32px;
     background: black;
     color: white;
+    --videoWidth: 500;
 }
 
 a {
@@ -29,6 +30,7 @@ a {
     transform-origin: center;
     margin: 0;
     margin-bottom: 100px;
+    transition: padding 0.5s ease-out;
 }
 
 #move div {
@@ -40,11 +42,16 @@ a {
     overflow: hidden;
 }
 
+
 #move div video {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 500px;
+    /* width: calc(var(--videoWidth) / 2); */
+    width: 500px;
+}
+
+.paddingNew {
+    padding: 0 calc(50% - 325px);
 }
