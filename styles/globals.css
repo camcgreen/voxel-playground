@@ -13,6 +13,8 @@ body {
     overflow-x: hidden;
     overscroll-behavior: none;
     font-size: 32px;
+    background: black;
+    color: white;
 }
 
 a {
@@ -21,10 +23,28 @@ a {
 }
 
 #move {
-    /* width: 1000px; */
+    position: relative;
     width: 100%;
     height: 650px;
-    border-radius: 100px;
-    background: lightblue;
+    transform-origin: center;
+    margin: 0;
     margin-bottom: 100px;
+}
+
+#move div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 1000px;
+    background: #1b1b1b;
+    overflow: hidden;
+}
+
+#move div video {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
 }

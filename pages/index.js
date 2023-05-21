@@ -44,11 +44,20 @@ export default function Home() {
             const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
 
             if (movementAllowed) {
-                pos.x += (mouse.x - (target.offsetLeft + 250) - pos.x) * dt;
+                // pos.x += (mouse.x - (target.offsetLeft + 250) - pos.x) * dt;
+                pos.x +=
+                    (mouse.x -
+                        (target.offsetLeft + target.offsetWidth / 2) -
+                        pos.x) *
+                    dt;
                 // pos.y +=
-                //     (mouse.y - (target.offsetTop + scrollY - 250) - pos.y) * dt;
+                //     (mouse.y + scrollY - (target.offsetTop + 250) - pos.y) * dt;
                 pos.y +=
-                    (mouse.y + scrollY - (target.offsetTop + 250) - pos.y) * dt;
+                    (mouse.y +
+                        scrollY -
+                        (target.offsetTop + target.offsetHeight / 2) -
+                        pos.y) *
+                    dt;
                 xSet(pos.x);
                 ySet(pos.y);
             } else {
@@ -59,20 +68,13 @@ export default function Home() {
             }
         });
         gsap.to(target, {
-            // duration: 1,
-            backgroundColor: 'rgb(220, 220, 220)',
-            // scale: 0.5,
-            width: 500,
-            height: 500,
-            borderRadius: 500,
+            padding: '0 575',
             scrollTrigger: {
+                duration: 0.1,
                 trigger: intro,
                 toggleActions: 'restart none none reverse',
-                // scrub: true,
                 start: 'top top',
-                // end: about,
-                // end: 'top 30%',
-                markers: true,
+                // markers: true,
                 onEnter: () => {
                     console.log('onEnter');
                     movementAllowed = true;
@@ -88,6 +90,16 @@ export default function Home() {
                     console.log('onLeaveBack');
                     movementAllowed = false;
                 },
+            },
+        });
+        const vid = document.getElementById('moveVideo');
+        gsap.to(vid, {
+            scale: 0.5,
+            scrollTrigger: {
+                duration: 0.1,
+                trigger: intro,
+                toggleActions: 'restart none none reverse',
+                start: 'top top',
             },
         });
     }, []);
@@ -115,7 +127,18 @@ export default function Home() {
                                     <br />
                                     DEVELOPMENT_
                                 </h1>
-                                <div className={styles.move} id='move'></div>
+                                <div className={styles.move} id='move'>
+                                    {/* <div /> */}
+                                    <div>
+                                        <video
+                                            src='/2.webm'
+                                            autoPlay
+                                            loop
+                                            muted
+                                            id='moveVideo'
+                                        />
+                                    </div>
+                                </div>
                                 <div className={styles.about} id='about'>
                                     <h2>ABOUT</h2>
                                     <p>
