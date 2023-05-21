@@ -1,7 +1,26 @@
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
+import { SplitText } from 'gsap/dist/SplitText';
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 
 export default function Home() {
+    useEffect(() => {
+        // create the smooth scroller FIRST!
+        const smoother = ScrollSmoother.create({
+            wrapper: '.wrapper',
+            content: '.content',
+            smooth: 2,
+            normalizeScroll: true, // prevents address bar from showing/hiding on most devices, solves various other browser inconsistencies
+            ignoreMobileResize: true, // skips ScrollTrigger.refresh() on mobile resizes from address bar showing/hiding
+            effects: true,
+            preventDefault: true,
+        });
+    }, []);
     return (
         <>
             <Head>
@@ -16,13 +35,145 @@ export default function Home() {
                 />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
-            <main className={`${styles.main}`}>
-                <h1>
-                    ART
-                    <br />
-                    DIRECTION
-                </h1>
-            </main>
+            <div className='wrapper'>
+                <main className='content'>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <section className={styles.vCenter}>
+                        <div className={styles.parallaxSlab}>
+                            <img
+                                data-speed='auto'
+                                src='https://assets.codepen.io/756881/smoothscroller-1.jpg'
+                                alt=''
+                            />
+                        </div>
+                    </section>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                    <h1>
+                        ART
+                        <br />
+                        DIRECTION
+                    </h1>
+                </main>
+            </div>
         </>
     );
 }
